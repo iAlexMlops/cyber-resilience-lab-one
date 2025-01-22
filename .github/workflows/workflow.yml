@@ -29,6 +29,8 @@ jobs:
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
+      - name: pylinter
+        uses: programmingwithalex/pylinter@v1.4.3                
    
       - name: Build and push Docker images
         # You may pin to the exact commit or the version.
