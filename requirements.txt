@@ -1,0 +1,7 @@
+pandas
+numpy
+scykit-learn
+keras
+tensorflow
+matplotlib
+warnings
