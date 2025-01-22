@@ -22,4 +22,15 @@ jobs:
         uses: docker/build-push-action@v6.12.0
         with:
           context: .
+
+      - name: Telegram Notifier
+        uses: nikhilbadyal/telegram-forwarder@0.0.1
+        with:
+          # Telegram Bot Token
+          token: 
+          # Message to be sent
+          message: # optional, default is Action Finished
+          # Receiver of the message
+          recipient: 
+                
           
