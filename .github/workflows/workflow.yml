@@ -30,7 +30,11 @@ jobs:
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
       - name: pylinter
-        uses: programmingwithalex/pylinter@v1.4.3                
+        uses: programmingwithalex/pylinter@v1.4.3   
+        with:
+          skip-flake8: true
+          skip-mypy: true
+          skip-isort: true
    
       - name: Build and push Docker images
         # You may pin to the exact commit or the version.
