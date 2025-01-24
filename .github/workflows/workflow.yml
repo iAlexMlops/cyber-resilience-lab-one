@@ -56,7 +56,7 @@ jobs:
         script: |
           ls -la /srv
           docker build -t lstm -f /srv/Dockerfile /srv
-          docker run -d -p 5050:5000 lstm-app
+          docker run -d -p 5050:5000 lstm
 
     - name: Install dependencies
       run: |
