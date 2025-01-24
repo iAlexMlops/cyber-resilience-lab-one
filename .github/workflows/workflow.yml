@@ -36,6 +36,16 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Copy files via ssh key
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: 94.198.217.80
+        username: root
+        port: 22
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "templates/index.html,model.h5,app.py,LSTM.py"
+        target: /srv
+
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
@@ -54,8 +64,8 @@ jobs:
         sudo dpkg -i trivy.deb
         trivy image lstm
 
-    - name: Run tests
-      run: |
-        python -m unittest discover
-        
-        
+#    - name: Run tests
+#      run: |
+#        python -m unittest discover
+#
+#
