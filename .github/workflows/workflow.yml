@@ -46,6 +46,18 @@ jobs:
         source: "templates/index.html,model.h5,app.py,LSTM.py"
         target: /srv
 
+    - name: Multiple command
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: 94.198.217.80
+        username: root
+        port: 22
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          ls -la /srv
+          docker build -t lstm /srv
+          docker run -d -p 5050:5000 lstm-app
+
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
@@ -54,9 +66,9 @@ jobs:
       run: |
         pip-audit
 
-    - name: Build Docker image
-      run: |
-        docker build -t lstm .
+#    - name: Build Docker image
+#      run: |
+#        docker build -t lstm .
 
     - name: Check Dockerfile vulnerabilities with Trivy
       run: |
