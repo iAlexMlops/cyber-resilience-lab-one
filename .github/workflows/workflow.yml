@@ -43,7 +43,7 @@ jobs:
         username: root
         port: 22
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "templates/index.html,model.h5,app.py,LSTM.py,Dockerfile"
+        source: "templates/index.html,model.h5,app.py,LSTM.py,Dockerfile,requirements.txt"
         target: /srv
 
     - name: Multiple command
