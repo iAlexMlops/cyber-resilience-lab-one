@@ -43,7 +43,7 @@ jobs:
         username: root
         port: 22
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "templates/index.html,model.h5,app.py,LSTM.py"
+        source: "templates/index.html,model.h5,app.py,LSTM.py,Dockerfile"
         target: /srv
 
     - name: Multiple command
@@ -66,9 +66,9 @@ jobs:
       run: |
         pip-audit
 
-#    - name: Build Docker image
-#      run: |
-#        docker build -t lstm .
+    - name: Build Docker image
+      run: |
+        docker build -t lstm .
 
     - name: Check Dockerfile vulnerabilities with Trivy
       run: |
@@ -76,8 +76,7 @@ jobs:
         sudo dpkg -i trivy.deb
         trivy image lstm
 
-#    - name: Run tests
-#      run: |
-#        python -m unittest discover
-#
-#
+    - name: Run tests
+      run: |
+        python -m unittest model_test.py
+
