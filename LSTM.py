@@ -58,6 +58,7 @@ if '__main__' == __name__:
 
     model = create_model(time_step=60)
     model.fit(X_train, y_train, batch_size=1, epochs=1)
+    model.save('model.h5')
 
     predictions = model.predict(X_test)
     predictions = scaler.inverse_transform(predictions)

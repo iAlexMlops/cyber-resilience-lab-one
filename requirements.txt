@@ -5,3 +5,5 @@ keras
 tensorflow
 matplotlib
 pip-audit
+uvicorn
+fastapi
