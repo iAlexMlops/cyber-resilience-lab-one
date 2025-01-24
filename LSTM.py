@@ -9,6 +9,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 warnings.filterwarnings("ignore")
 
+
 def train_lstm_model(data):
     data = data.reshape(-1, 1)
 
@@ -49,21 +50,14 @@ def train_lstm_model(data):
     predictions = model.predict(X_test)
     predictions = scaler.inverse_transform(predictions)
 
-    return predictions, train_size, time_step
+    return model
 
 
-df = pd.read_csv('../data/portfolio_data.csv')
+df = pd.read_csv('data/portfolio_data.csv')
+data = df['DPZ'].values
 
-# columns = ['AMZN', 'DPZ', 'NFLX', 'BTC']
-columns = ['DPZ']
-for column in columns:
-    data = df[column].values
-    predictions, train_size, time_step = train_lstm_model(data)
+model = train_lstm_model(data)
 
-    # Визуализируем результаты
-    plt.figure(figsize=(10, 6))
-    plt.plot(df[column].values, label=f'Истинные данные {column}')
-    x_range = range(train_size + time_step + 1, train_size + time_step + 1 + len(predictions))
-    plt.plot(x_range, predictions, label=f'Предсказания {column}')
-    plt.legend()
-    plt.show()
+print(model.summary())
+
+
